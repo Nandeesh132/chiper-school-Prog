@@ -380,3 +380,162 @@ class Solution {
         return true;
     }
 }
+
+//////////////////////////////////////////////////////////////////////////////////////
+Date: 5/03/2025
+Leetcode 231
+Leetcode 326
+Leetcode 342
+231. Power of Two
+Solved
+
+Easy
+
+Topics
+
+Companies
+Given an integer n, return true if it is a power of two. Otherwise, return false.
+An integer n is a power of two, if there exists an integer x such that n == 2x.
+ 
+Example 1:
+Input: n = 1
+Output: true
+Explanation: 20 = 1
+Example 2:
+Input: n = 16
+Output: true
+Explanation: 24 = 16
+
+class Solution {
+    public boolean isPowerOfTwo(int n) {
+        if(n<=0){
+            return false;
+        }
+        while(n>0){
+            if(n==1){
+                return true;
+            }
+            if(n%2!=0){ 
+                return false;
+            }
+            n=n/2;  
+        }
+        return true;
+    }
+}
+326. Power of Three
+Solved
+
+Easy
+
+Topics
+
+Companies
+Given an integer n, return true if it is a power of three. Otherwise, return false.
+An integer n is a power of three, if there exists an integer x such that n == 3x.
+ 
+Example 1:
+Input: n = 27
+Output: true
+Explanation: 27 = 33
+Example 2:
+Input: n = 0
+Output: false
+Explanation: There is no x where 3x = 0.
+
+
+class Solution {
+    public boolean isPowerOfThree(int n) {
+        if(n<=0){
+            return false;
+        }
+        while(n>0){
+            if(n==1){
+                return true;
+            }
+            if(n%3 !=0){
+                return false;
+            }
+            n=n/3;
+        }
+        return true;
+    }
+}
+
+342. Power of Four
+Solved
+
+Easy
+
+Topics
+
+Companies
+Given an integer n, return true if it is a power of four. Otherwise, return false.
+An integer n is a power of four, if there exists an integer x such that n == 4x.
+ 
+Example 1:
+Input: n = 16
+Output: true
+Example 2:
+Input: n = 5
+Output: false
+Example 3:
+Input: n = 1
+Output: true
+
+class Solution {
+    public boolean isPowerOfFour(int n) {
+        if(n<=0){
+            return false;
+        }
+        while(n>0){
+            if(n==1){
+                return true;
+            }
+            if(n%4!=0){
+                return false;
+            }
+            n=n/4;
+            
+        }
+        return true;
+    }
+}
+
+Rabbin Harp
+In pattern matching
+Description
+
+2579. Count Total Number of Colored Cells
+Solved
+
+Medium
+
+Topics
+
+Companies
+
+Hint
+There exists an infinitely large two-dimensional grid of uncolored unit cells. You are given a positive integer n, indicating that you must do the following routine for n minutes:
+* At the first minute, color any arbitrary unit cell blue.
+* Every minute thereafter, color blue every uncolored cell that touches a blue cell.
+Below is a pictorial representation of the state of the grid after minutes 1, 2, and 3.
+￼
+Return the number of colored cells at the end of n minutes.
+ 
+Example 1:
+Input: n = 1
+Output: 1
+Explanation: After 1 minute, there is only 1 blue cell, so we return 1.
+
+class Solution {
+    public long coloredCells(int n) {
+        long sum=1; // Initial number of colored cells
+        for(int i=2; i<=n; i++){
+            sum+=(i-1)*4; // Increment by 4 times the previous level
+        }
+        return sum;
+    }
+}
+
+
