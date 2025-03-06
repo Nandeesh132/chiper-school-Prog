@@ -637,5 +637,74 @@ class Main {
             System.out.println(arr[i]);
         }
     }
+} 
+//Q. take input of two num arr and output as merge of both arrays  in sorted 
+class Main {
+    public static void main(String[] args) {
+        int[] arr1={10,20,30,40,50};
+        int[] arr2={8,12,15,17,90,100};
+        
+        int n1=arr1.length;
+        int n2=arr2.length;
+        int[] ans = new int[n1+n2];
+        int i=0;// for index 1
+        int j=0;
+        int index=0;
+        while(index<n1+n2){
+
+            if(i==n1){
+                ans[index++] = arr2[j];
+                j++;
+                //index++;
+                
+                continue;// then it will go to while loop.
+            }
+            if(j==n2){
+                ans[index++] = arr1[i];
+                i++;
+                //index++;
+                continue;// then it start the while loop
+            }
+            
+            if(arr1[i]<=arr2[j]){
+                ans[index] =arr1[i];
+                i++;
+                System.out.println("if |->"+ans[index]);
+                index++;
+            }else{
+                ans[index] = arr2[j];
+                j++;
+                System.out.println("else |->"+ans[index]);
+                index++;
+            }
+        }
+        System.out.println(" working");
+        for(int k=0; k<ans.length;k++){
+            System.out.println(ans[k]);
+        }
+    }
 }
+output is 
+else |->8
+if |->10
+else |->12
+else |->15
+else |->17
+if |->20
+if |->30
+if |->40
+if |->50
+ working
+8
+10
+12
+15
+17
+20
+30
+40
+50
+90
+100
+
 
