@@ -554,3 +554,35 @@ class Main {
     }
 }
 
+// Binary Searching
+// in binary searching first we want to sort the array it is compulsory
+// here we take two pointers and one while loop.
+import java.util.Arrays;
+class Main {
+    public static void main(String[] args) {
+        int[] arr={1,2,3,4,5,8,9,6,10,11};
+        Arrays.sort(arr);// used to sort the array
+        int n = arr.length;
+        System.out.println(n);
+        int low =0;//storinh low index.
+        int high = n-1;// storing high index.
+        
+        int target =6;// Find the target in the array where it is located
+        while(low <= high){//here three index 
+            int mid = (low+high)/2;// finding the mid of that array
+            if(arr[mid]==target){// if same directly print the mid 
+                System.out.print(mid);
+                break;
+            }
+            else if(arr[mid]>target){// mid value higher than the target then update the high value as mid-1 index
+                high= mid-1;
+                
+            }
+            else{
+                low = mid+1;//if mid value is less than target then update the low as mid+1 index
+            }
+            
+        }
+    }
+}
+
