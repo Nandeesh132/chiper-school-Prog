@@ -952,3 +952,53 @@ Output: [-1,-1]
 Example 3:
 Input: nums = [], target = 0
 Output: [-1,-1]
+code:
+class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        int n = nums.length;
+        int[] result = {-1, -1}; // Default to -1 if not found
+        int low = 0;
+        int high = n - 1;
+        boolean found = false;
+
+        // Find the first occurrence of the target
+        while (low <= high) {
+            int mid1 = (low + high) / 2;
+
+            if (nums[mid1] == target) {
+                result[0] = mid1; // Store first occurrence
+                high = mid1 - 1; // Keep searching towards left
+                found = true;
+            } else if (nums[mid1] > target) {
+                high = mid1 - 1;
+            } else {
+                low = mid1 + 1;
+            }
+        }
+
+        // Reset low and high to search for last occurrence
+        low = 0;
+        high = n - 1;
+
+        while (low <= high) {
+            int mid2 = (low + high) / 2;
+
+            if (nums[mid2] == target) {
+                result[1] = mid2; // Store last occurrence
+                low = mid2 + 1; // Keep searching towards right
+                found = true;
+            } else if (nums[mid2] > target) {
+                high = mid2 - 1;
+            } else {
+                low = mid2 + 1;
+            }
+        }
+
+        if (!found) {
+            return result; // If target was never found, return [-1, -1]
+        }
+
+        return result;
+    }
+}
+
