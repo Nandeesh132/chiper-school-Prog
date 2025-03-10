@@ -1,3 +1,52 @@
 Date: 10/3/2025 (Monday)
 
+Count Inversions
+Input: arr[] = [2, 4, 1, 3, 5]
+Output: 3
+Explanation: The sequence 2, 4, 1, 3, 5 has three inversions (2, 1), (4, 1), (4, 3).
+
+class Solution {
+    // Function to count inversions in the array.
+    static int inversionCount(int arr[]) {
+        return mergeSort(arr, 0, arr.length - 1);
+    }
+    public static int mergeSort(int arr[], int low, int high){
+        int count = 0;
+        if(low < high){
+            int mid = (low  + high)/2;
+           count += mergeSort(arr, low, mid);
+           count += mergeSort(arr, mid + 1, high);
+           count += merge(arr, low, mid, high);
+        }
+        return count;
+    }
+    public static int merge(int arr[], int l, int mid, int h){
+        ArrayList<Integer> list = new ArrayList<>();
+        int low = l;
+        int high = mid + 1;
+        int count = 0;
+        while(low <= mid && high <= h){
+            if(arr[low] <= arr[high]){
+                list.add(arr[low]);
+                low++;
+            }else{
+                count += (mid - low + 1);
+                list.add(arr[high]);
+                high++;
+            }
+        }
+        while(low <= mid){
+            list.add(arr[low]);
+            low++;
+        }
+        while(high <= h){
+            list.add(arr[high]);
+            high++;
+        }
+        for(int i = l; i<= h; i++){
+            arr[i] = list.get(i - l);
+        }
+        return count;
+    }
+}
 
