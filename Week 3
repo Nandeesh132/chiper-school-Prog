@@ -137,3 +137,82 @@ class Solution {
         return left; 
     }
 }
+
+//////////////////////////////////////////////////////////////
+Date: 11/03/2025
+
+1358. Number of Substrings Containing All Three Characters
+Solved
+Medium
+Topics
+Companies
+Hint
+Given a string s consisting only of characters a, b and c.
+
+Return the number of substrings containing at least one occurrence of all these characters a, b and c.
+
+ 
+
+Example 1:
+
+Input: s = "abcabc"
+Output: 10
+Explanation: The substrings containing at least one occurrence of the characters a, b and c are "abc", "abca", "abcab", "abcabc", "bca", "bcab", "bcabc", "cab", "cabc" and "abc" (again). 
+code 1: Array Frequency approach
+class Solution {
+    public int numberOfSubstrings(String s) {
+        int n = s.length();
+        int cnt = 0;
+        int[] arr = new int[3];
+
+        int i = 0, j = 0;
+
+        while (j < n) { 
+            arr[s.charAt(j) - 'a']++; // Expand window by including `s[j]`
+            
+            // Shrink window when all three characters are present
+            while (arr[0] > 0 && arr[1] > 0 && arr[2] > 0) {
+                cnt += n - j;  // Count all valid substrings from i to end
+                arr[s.charAt(i) - 'a']--; // Shrink window from `i`
+                i++; // Move `i` forward
+            }
+
+            j++; // Expand `j`
+        }
+
+        return cnt;
+    }
+}
+
+code2: using hashmap and two pointers
+
+class Solution {
+    public int numberOfSubstrings(String s) {
+        HashMap<Character, Integer> map = new HashMap<>();
+        int n = s.length();
+        int count = 0;
+        int i = 0, j = 0;
+
+        while (j < n) {
+            // Expand the window by including s[j]
+            map.put(s.charAt(j), map.getOrDefault(s.charAt(j), 0) + 1);
+
+            // Check if all three characters are present
+            while (map.size() == 3) {
+                count += n - j; // Count all valid substrings from i to end
+                map.put(s.charAt(i), map.get(s.charAt(i)) - 1);
+
+                // Remove character if its count becomes zero
+                if (map.get(s.charAt(i)) == 0) {
+                    map.remove(s.charAt(i));
+                }
+
+                i++; // Shrink window from the left
+            }
+
+            j++; // Expand window from the right
+        }
+
+        return count;
+    }
+}
