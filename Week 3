@@ -404,6 +404,42 @@ class Solution {
 }
 
 code 2: using binary search
+
+class Solution {
+    public boolean canmidcomp(int[] arr,int mid,int hour){
+        int currhour =0;
+        for(int num: arr){
+            currhour += num/mid;
+            if(num%mid!= 0){
+                currhour++;
+            }
+            if(currhour>hour) return false;
+        }
+        return true;
+    }
+    public int minEatingSpeed(int[] piles, int h) {
+        int max = 1;
+        
+        for(int num: piles){
+            max= Math.max(num,max);
+        }
+        int left =1, right =max;
+        int ans = max;
+        while(left<=right){
+            int mid = (left+right)/2;
+            if(canmidcomp(piles,mid,h)){//true from canmidcom
+                ans = mid;
+                right = mid-1;
+            }
+            else{
+                left =mid+1;
+            }
+        }
+        return ans;
+    }
+}
+
+
 class Solution {
     public boolean canmidcomp(int[] arr,int mid,int hour){
         int currhour =0;
