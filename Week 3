@@ -382,7 +382,7 @@ class Solution {
             if(num%k !=0) currhour++;
             if(currhour > Targhour) return false;
         }
-        return true;
+        return true;//if(currhour <= hour)
     }
     public int minEatingSpeed(int[] piles, int h) {
         // int n = piles.length;
@@ -415,7 +415,7 @@ class Solution {
             }
             if(currhour>hour) return false;
         }
-        return true;
+        return true;//if(currhour <= hour)
     }
     public int minEatingSpeed(int[] piles, int h) {
         int max = 1;
@@ -450,7 +450,7 @@ class Solution {
             }
             if(currhour>hour) return false;
         }
-        return true;
+        return true;//if(currhour <= hour)
     }
     public int minEatingSpeed(int[] piles, int h) {
         int max = 1;
