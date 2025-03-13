@@ -522,3 +522,29 @@ class Main {
 ////////////////////////////////////////////////////////////////////////
 Date: 13/03/2025
 
+code 1:
+class Solution {
+    public int pivotIndex(int[] nums) {
+        int pivot =0;
+        
+        while(pivot<nums.length){
+            int sum1 =0;
+            int sum2 =0;
+            
+            for(int i=0;i<pivot;i++){
+                
+                sum1 += nums[i];
+            }
+            
+            for(int j=pivot+1;j<nums.length;j++){
+                sum2 += nums[j];
+            }
+            if(sum1 == sum2){
+                return pivot;
+                // break;
+            }
+            pivot++;
+        }
+        return -1;
+    }
+}
