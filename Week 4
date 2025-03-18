@@ -31,3 +31,34 @@ class Main { // Single linked list.
         }
     }
 }
+
+code2: for single linked list
+class Main {// Single linked list.
+    public static class Node{
+        int data;
+        Node next;
+        public Node(int data){//First constructor
+            this.data = data;
+            this.next = null;
+        }
+        public Node(int data, Node next){//second constructor
+            this.data = data;
+            this.next = next;
+        }
+    }
+    
+    public static void main(String[] args) {
+        Node head = new Node(1);
+        Node second = new Node(2);
+        Node third = new Node(3);
+        head.next =second;
+        second.next=third;
+
+        
+        Node temp = head;
+        while(temp != null){
+            System.out.print(temp.data+" ");
+            temp = temp.next;
+        }
+    }
+}
