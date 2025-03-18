@@ -1,0 +1,33 @@
+Date: 18/03/2025
+/// Single linkedlist code.
+class Main { // Single linked list.
+    public class Node {
+        int data;
+        Node next;
+
+        public Node(int data) { // First constructor
+            this.data = data;
+            this.next = null;
+        }
+
+        public Node(int data, Node next) { // Second constructor
+            this.data = data;
+            this.next = next;
+        }
+    }
+
+    public static void main(String[] args) {
+        Main mainObj = new Main(); // Create an instance to access Node class
+        Node head = mainObj.new Node(1);
+        Node second = mainObj.new Node(2);
+        Node third = mainObj.new Node(3);
+        
+        head.next = second;
+        second.next = third;
+
+        while (head != null) { // Fixed "While" to "while"
+            System.out.print(head.data + " "); // Corrected access to `data`
+            head = head.next;
+        }
+    }
+}
