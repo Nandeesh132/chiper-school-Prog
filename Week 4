@@ -62,3 +62,246 @@ class Main {// Single linked list.
         }
     }
 }
+
+
+code 3:
+class Main {// Single linked list.
+    public static class Node{
+        int data;
+        Node next;
+        public Node(int data){//First constructor
+            this.data = data;
+            this.next = null;
+        }
+        public Node(int data, Node next){//second constructor
+            this.data = data;
+            this.next = next;
+        }
+    }
+    public static class LinkedList{
+        Node head;
+        Node tail;
+        int size;
+        
+        public LinkedList(){
+            head = null;
+            tail =null;
+            size =0;
+            
+            
+        }
+
+        void addAtLast(int val){
+            Node node = new Node(val);
+            if(size == 0){//case 1.
+                head =node;
+                tail =node;
+            }
+            else{//case 2
+                
+                tail.next = node;
+                tail = node;
+            }
+            size++;
+        }
+        void printLinkedList(){
+            if(size == 0){
+                System.out.println("nothing in linkedlist");
+            }else{
+                Node temp =head;
+                while(temp != null){
+                    System.out.println(temp.data+" ");
+                  temp = temp.next;  
+                }
+                
+            }
+        }
+        
+    }
+    public static void main(String[] args) {
+        LinkedList ll =new LinkedList();
+        ll.addAtLast(3);
+        ll.addAtLast(7);
+        ll.addAtLast(4);
+        //if we donot call the addAtLast function or method then out put is "nothing in linkedlist"
+        ll.printLinkedList();
+    }
+}
+output
+3 
+7 
+4
+
+
+code 4: using front and last
+class Main {// Single linked list.
+    public static class Node{
+        int data;
+        Node next;
+        public Node(int data){//First constructor
+            this.data = data;
+            this.next = null;
+        }
+        public Node(int data, Node next){//second constructor
+            this.data = data;
+            this.next = next;
+        }
+    }
+    public static class LinkedList{
+        Node head;
+        Node tail;
+        int size;
+        
+        public LinkedList(){
+            head = null;
+            tail =null;
+            size =0;
+            
+            
+        }
+        
+        void addAtFornt(int val){
+            Node node = new Node(val);
+            if(size == 0){
+                addAtFornt(val);
+                
+            }else{
+                node.next = head;
+                head = node;
+                
+            }
+            size++;
+        }
+        void addAtLast(int val){
+            Node node = new Node(val);
+            if(size == 0){//case 1.
+                head =node;
+                tail =node;
+            }
+            else{//case 2
+                
+                tail.next = node;
+                tail = node;
+            }
+            size++;
+        }
+        void printLinkedList(){
+            if(size == 0){
+                System.out.println("nothing in linkedlist");
+            }else{
+                Node temp =head;
+                while(temp != null){
+                    System.out.println(temp.data+" ");
+                  temp = temp.next;  
+                }
+                
+            }
+        }
+        
+    }
+    public static void main(String[] args) {
+        LinkedList ll =new LinkedList();
+        ll.addAtLast(3);
+        ll.addAtLast(7);
+        ll.addAtLast(4);
+        ll.addAtFornt(1);
+        //if we donot call the addAtLast function or method then out put is "nothing in linkedlist"
+        ll.printLinkedList();
+    }
+}
+
+Insert a element in single LinkedList
+code 1: incomplete
+
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+
+class Main {// Single linked list.
+    public static class Node{
+        int data;
+        Node next;
+        public Node(int data){//First constructor
+            this.data = data;
+            this.next = null;
+        }
+        public Node(int data, Node next){//second constructor
+            this.data = data;
+            this.next = next;
+        }
+    }
+    public static class LinkedList{
+        Node head;
+        Node tail;
+        int size;
+        
+        public LinkedList(){
+            head = null;
+            tail =null;
+            size =0;
+            
+            
+        }
+        
+        void addAtFornt(int val){
+            Node node = new Node(val);
+            if(size == 0){
+                addAtFornt(val);
+                
+            }else{
+                node.next = head;
+                head = node;
+                
+            }
+            size++;
+        }
+        void addAtLast(int val){
+            Node node = new Node(val);
+            if(size == 0){//case 1.
+                head =node;
+                tail =node;
+            }
+            else{//case 2
+                
+                tail.next = node;
+                tail = node;
+            }
+            size++;
+        }
+        void printLinkedList(){
+            if(size == 0){
+                System.out.println("nothing in linkedlist");
+            }else{
+                Node temp =head;
+                while(temp != null){
+                    System.out.println(temp.data+" ");
+                  temp = temp.next;  
+                }
+                
+            }
+        }
+        void addAtIndex(int val, int index){
+            if(index == 0){
+                addAtFront(val);
+                
+            }else if(index == size){
+                addAtLast(val);
+                
+            }else if(index>size){
+                System.out.println("index out of size")
+            }
+            else{//in between start and end
+                //logic is pending
+                
+            }
+        }
+    }
+    public static void main(String[] args) {
+        LinkedList ll =new LinkedList();
+        ll.addAtLast(3);
+        ll.addAtLast(7);
+        ll.addAtLast(4);
+        ll.addAtFornt(1);
+        //if we donot call the addAtLast function or method then out put is "nothing in linkedlist"
+        ll.printLinkedList();
+    }
+}
