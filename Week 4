@@ -648,5 +648,50 @@ class Solution {
 }
 
 
-code 2:
+code 2: working code
 
+
+/*
+Structure of node class is:
+class Node {
+    int data;
+    Node next;
+
+    public Node(int data){
+        this.data = data;
+        this.next = null;
+    }
+}
+*/
+
+class Solution {
+    public Node insertInMiddle(Node head, int x) {
+        if (head == null) { // If the list is empty, new node becomes head
+            return new Node(x);
+        }
+        
+        Node node = new Node(x);
+        Node temp = head;
+        int count = 1;
+
+        // Count the number of nodes
+        while (temp != null) {
+            count++;
+            temp = temp.next;
+        }
+
+        int mid = count / 2; // Middle position
+        temp = head; // Reset temp to head
+
+        // Traverse to the middle node
+        for (int i = 1; i <mid; i++) {
+            temp = temp.next;
+        }
+
+        // Insert the new node
+        node.next = temp.next;
+        temp.next = node;
+
+        return head; // Return the head of the updated linked list
+    }
+}
