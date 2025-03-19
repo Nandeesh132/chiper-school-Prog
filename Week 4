@@ -466,7 +466,7 @@ public class SLL{
 Date: 19/03/2025
 
 
-Linked List Insertion At End
+1) Linked List Insertion At End
 Difficulty: BasicAccuracy: 43.96%Submissions: 331K+Points: 1Average Time: 20m
 Given the head of a Singly Linked List and a value x, insert that value x at the end of the LinkedList and return the modified Linked List.
 
@@ -507,6 +507,81 @@ class Solution {
         
         
         
+    }
+}
+
+2) Search In Linked List
+Difficulty: BasicAccuracy: 69.95%Submissions: 12K+Points: 1Average Time: 15m
+You are given a singly linked list of n elements, and also an element x. You need to find if x is present in the linked list or not. Return true if x is present else returns false. (1 is printed by the driver code if the returned value is true, otherwise 0)
+
+Examples :
+
+Input: LinkedList: 1->2->3->4->5, x = 4
+Output: 1
+Input: LinkedList: 2->4->6->7->5->1->0, x = 10
+Output: 0
+// User function Template for Java
+
+/*
+class Node
+{
+    int data;
+    Node next;
+    Node(int data)
+    {
+        this.data = data;
+        this.next = null;
+    }
+}
+*/
+
+class Get {
+    public static boolean searchLinkedList(Node head, int x) {
+        // Your code here
+        boolean ans = false;
+        Node temp = head;
+        while(temp.next !=null){
+            if(temp.data == x){
+                ans = true;
+            }
+            temp = temp.next;
+        }
+        return ans;
+    }
+}
+
+3) Count Linked List Nodes
+Difficulty: BasicAccuracy: 85.99%Submissions: 246K+Points: 1Average Time: 15m
+Given a singly linked list. The task is to find the length of the linked list, where length is defined as the number of nodes in the linked list.
+
+Examples :
+
+Input: LinkedList : 1->2->3->4->5
+
+Output: 5
+Explanation: Count of nodes in the linked list is 5, which is its length.
+
+/*Complete the function below*/
+/*
+class Node{
+    int data;
+    Node next;
+    Node(int a){  data = a; next = null; }
+}*/
+
+class Solution {
+    // Function to count nodes of a linked list.
+    public int getCount(Node head) {
+        
+        // code here
+        int count =1;
+        
+        Node temp = head;
+        while(temp.next!=null){
+            count++;
+            temp=temp.next;
+        }
+        return count;
     }
 }
 
