@@ -585,3 +585,68 @@ class Solution {
     }
 }
 
+
+code1: runtime time error
+
+
+
+/*
+Structure of node class is:
+class Node {
+    int data;
+    Node next;
+
+    public Node(int data){
+        this.data = data;
+        this.next = null;
+    }
+}
+*/
+
+class Solution {
+    public Node insertInMiddle(Node head, int x) {
+        // Create a new node with the given value
+        Node node = new Node(x);
+        
+        // Edge case: If the list has only one node, insert the new node after the head
+        if (head.next == null) {
+            head.next = node;
+            return head; // Return updated head
+        }
+
+        // Initialize a temporary pointer to count the number of nodes
+        Node temp = head;
+        int count = 1;
+
+        // Traverse the linked list to count total nodes
+        while (temp.next != null) {
+            count++;
+            temp = temp.next;
+        }
+
+        // Calculate middle position (0-based index)
+        int mid = count / 2;
+
+        // Initialize another temporary pointer for second traversal
+        Node temp1 = head;
+        int count1 = 1;
+
+        // Traverse the list to the (mid+1)th position
+        while (temp1.next != null) {
+            if (count1 == mid + 1) {
+                // Insert the new node in the middle
+                node.next = temp1.next; // Link new node to the next node
+                temp1.next = node;      // Link previous node to new node
+                break; // Exit the loop after inserting
+            }
+            count1++;
+            temp1 = temp1.next;
+        }
+
+        return head; // Return the head of the updated linked list
+    }
+}
+
+
+code 2:
+
