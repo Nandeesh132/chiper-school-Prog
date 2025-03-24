@@ -1,0 +1,118 @@
+Date:24/March/2025  (Monday)
+
+206. Reverse Linked List
+Solved
+Easy
+Topics
+Companies
+Given the head of a singly linked list, reverse the list, and return the reversed list.
+
+ 
+
+Example 1:
+
+
+Input: head = [1,2,3,4,5]
+Output: [5,4,3,2,1]
+Example 2:
+
+
+Input: head = [1,2]
+Output: [2,1]
+Example 3:
+
+Input: head = []
+Output: []
+ 
+
+Constraints:
+
+The number of nodes in the list is the range [0, 5000].
+-5000 <= Node.val <= 5000
+ 
+code 1:
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        if(head == null || head.next == null) return head;
+
+        ListNode prev = null;
+        ListNode curr = head;
+        ListNode next = null;
+        
+        while (curr!= null ){
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+            
+        }
+        return prev ;      
+    }
+}
+code 2:
+
+import java.util.ArrayList;
+
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        if (head == null || head.next == null) return head;
+
+        ArrayList<ListNode> nodeList = new ArrayList<>();
+
+        // Step 1: Store all nodes in the ArrayList
+        ListNode temp = head;
+        while (temp != null) {
+            nodeList.add(temp);
+            temp = temp.next;
+        }
+
+        // Step 2: Reverse the links using the ArrayList
+        for (int i = nodeList.size() - 1; i > 0; i--) {
+            nodeList.get(i).next = nodeList.get(i - 1);
+        }
+
+        // Step 3: Set the next of the first node to null (new tail)
+        nodeList.get(0).next = null;
+
+        // Return the new head (last element in ArrayList)
+        return nodeList.get(nodeList.size() - 1);
+    }
+}
+code 3:
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        // Base case: If the list is empty or has only one node, return it as is
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        // Initialize three pointers:
+        ListNode prev = null;    // Previous node (initially null)
+        ListNode curr = head;    // Current node (starting from head)
+        ListNode next = head.next; // Next node (storing head.next initially)
+        
+        // Iterate through the list until next becomes null
+        while (next != null) {
+            curr.next = prev;  // Reverse the current node's pointer
+            prev = curr;       // Move prev forward
+            curr = next;       // Move curr forward
+            next = next.next;  // Move next forward
+        }
+
+        // After the loop, curr is at the last node, so reverse its pointer
+        curr.next = prev;
+
+        // Return the new head (which is the last node in the original list)
+        return curr;
+    }
+}
