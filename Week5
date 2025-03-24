@@ -116,3 +116,114 @@ class Solution {
         return curr;
     }
 }
+
+
+234. Palindrome Linked List
+Solved
+Easy
+Topics
+Companies
+Given the head of a singly linked list, return true if it is a palindrome or false otherwise.
+
+ 
+
+Example 1:
+
+
+Input: head = [1,2,2,1]
+Output: true
+Example 2:
+
+
+Input: head = [1,2]
+Output: false
+ 
+
+code1 : using arraylist and check palindrome
+
+import java.util.ArrayList;
+
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+        // Step 1: Store all values from the linked list into an ArrayList
+        ArrayList<Integer> list = new ArrayList<>();
+        ListNode temp = head;
+        
+        // Traverse the linked list and add values to the ArrayList
+        while (temp != null) { 
+            list.add(temp.val);
+            temp = temp.next;
+        }
+
+        // Step 2: Use two-pointer technique to check if the list is a palindrome
+        int low = 0;               // Start pointer (beginning of the list)
+        int end = list.size() - 1; // End pointer (end of the list)
+
+        while (low < end) { 
+            // Compare elements from start and end
+            if (!list.get(low).equals(list.get(end))) { // Fix: Use .equals() for Integer comparison
+                return false; // If any mismatch is found, it's not a palindrome
+            }
+            low++;  // Move start pointer forward
+            end--;  // Move end pointer backward
+        }
+
+        return true; // If all elements matched, the list is a palindrome
+    }
+}
+
+
+
+code 2: using mid reverse and check
+class Solution {
+    public ListNode reverse(ListNode head) {
+        ListNode prev = null;
+        ListNode curr = head;
+        ListNode next = null; // Fix: next should be null initially to avoid NullPointerException
+
+        while (curr != null) { // Fix: Loop should run while curr is not null
+            next = curr.next;  // Store the next node
+            curr.next = prev;  // Reverse the current node's pointer
+            prev = curr;       // Move prev to curr
+            curr = next;       // Move curr to next node
+        }
+        return prev; // prev is now the head of the reversed list
+    }
+
+    public boolean isPalindrome(ListNode head) {
+        if (head == null || head.next == null) return true; // Fix: Single node is a palindrome
+        // ListNode temp = head;
+        // int count =1;
+        // while(temp.next != null){
+        //     count++;
+        //     temp = temp.next;
+        // }
+        // int mid = count/2;
+        ListNode slow = head, fast = head;
+
+        // Step 1: Find the middle of the linked list
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        // Step 2: Reverse the second half of the list
+        slow = reverse(slow);
+
+        // Step 3: Compare first half with the reversed second half
+        ListNode temp = head;
+        // ListNode secondHalf = slow;
+
+        while (slow != null ) { // Fix: Compare until secondHalf is null
+            if (temp.val != slow.val) {
+                return false;
+            }
+            temp = temp.next;
+            slow = slow.next;
+        }
+
+
+        return true;
+    }
+}
+
