@@ -236,4 +236,34 @@ Date: 25/03/2024
  //add 1 to a linked list
 
 //stack
+//Stack using Arraylist
+class Main {
+    class Stack{
+            ArrayList<Integer> list;
+            
+            Stack(){//constructor
+                list = new ArrayList<>();
+            }
+            public void add(){
+                list.add(element);
+            }
+            
+            public int peak(){
+                if(list.size() == 0) return -1;
+                return list.get(list.size()-1);
+            }
+            
+            public int pop(){
+                if(list.size() == 0)return -1;
+                return list.remove(list.size()-1);
+            }
+            public int getSize(){
+                 list.size(); 
+            }
+        }
+    public static void main(String[] args) {
+        
+    }
+}
 
+//Stack using Linkedlist (Hint: add at the front not backside)?
