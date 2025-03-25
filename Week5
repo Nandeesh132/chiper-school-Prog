@@ -255,6 +255,9 @@ class Main {
             
             public int pop(){
                 if(list.size() == 0)return -1;
+int element = this.peek();
+list.remove(list.size()-1);
+return element;
                 return list.remove(list.size()-1);
             }
             public int getSize(){
