@@ -286,3 +286,51 @@ class Main {
 
 
 //Stack using Linkedlist (Hint: add at the front not backside)?
+////Stack using Sinngle Linkedlist
+import java.util.*;
+
+class Main {
+    class Stack {
+        LinkedList<Integer> list;
+
+        Stack() { // Constructor
+            list = new LinkedList<>();
+        }
+
+        public void add(int element) {
+            list.addFirst(element);
+        }
+
+        public int peek() { // Fixed method name
+            if (list.isEmpty()) return -1;
+            return list.peekFirst();
+        }
+
+        public int pop() {
+            if (list.isEmpty()) return -1;
+            int element = this.peek();
+            list.remove();
+            return element;
+        }
+
+        public int getSize() { // Fixed missing return
+            return list.size();
+        }
+    }
+
+    public static void main(String[] args) {
+        Main mainInstance = new Main(); // Create an instance of Main
+        Stack s = mainInstance.new Stack(); // Instantiate inner class
+
+        s.add(1);
+        s.add(12);
+        s.add(21);
+        s.add(22);
+        s.add(23);
+
+        System.out.println(s.peek()); // Output: 23
+        System.out.println(s.pop());  // Output: 23
+        System.out.println(s.getSize()); // Output: 4
+        System.out.println(s.peek());
+    }
+}
