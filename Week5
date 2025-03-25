@@ -227,3 +227,13 @@ class Solution {
     }
 }
 
+///////////////////////////////////////////////
+Date: 25/03/2024
+
+// reverse a double linked list,
+ //leetcode 2816
+ //copy list with random pointer
+ //add 1 to a linked list
+
+//stack
+
