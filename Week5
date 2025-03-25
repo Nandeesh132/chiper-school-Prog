@@ -334,3 +334,74 @@ class Main {
         System.out.println(s.peek());
     }
 }
+
+
+2816. Double a Number Represented as a Linked List
+Solved
+Medium
+Topics
+Companies
+Hint
+You are given the head of a non-empty linked list representing a non-negative integer without leading zeroes.
+
+Return the head of the linked list after doubling it.
+
+ 
+
+Example 1:
+
+
+Input: head = [1,8,9]
+Output: [3,7,8]
+Explanation: The figure above corresponds to the given linked list which represents the number 189. Hence, the returned linked list represents the number 189 * 2 = 378.
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode doubleIt(ListNode head) {
+        // Reverse the linked list to process from least significant digit
+        head = reverse(head);
+        
+        ListNode temp = head;
+        ListNode prev = null;
+        int carry = 0;
+        
+        while (temp != null) {
+            int newVal = temp.val * 2 + carry;
+            temp.val = newVal % 10;
+            carry = newVal / 10;
+            
+            prev = temp;
+            temp = temp.next;
+        }
+        
+        // If there is a carry left, add a new node
+        if (carry > 0) {
+            prev.next = new ListNode(carry);
+        }
+        
+        // Reverse the list back to original order
+        return reverse(head);
+    }
+    
+    private ListNode reverse(ListNode head) {
+        ListNode prev = null;
+        ListNode curr = head;
+        while (curr != null) {
+            ListNode nextNode = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = nextNode;
+        }
+        return prev;
+    }
+}
+
+
