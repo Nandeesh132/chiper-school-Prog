@@ -469,3 +469,61 @@ class Solution {
 
     }
 }
+
+
+735. Asteroid Collision
+Solved
+Medium
+Topics
+Companies
+Hint
+We are given an array asteroids of integers representing asteroids in a row. The indices of the asteriod in the array represent their relative position in space.
+
+For each asteroid, the absolute value represents its size, and the sign represents its direction (positive meaning right, negative meaning left). Each asteroid moves at the same speed.
+
+Find out the state of the asteroids after all collisions. If two asteroids meet, the smaller one will explode. If both are the same size, both will explode. Two asteroids moving in the same direction will never meet.
+
+ 
+
+Example 1:
+
+Input: asteroids = [5,10,-5]
+Output: [5,10]
+Explanation: The 10 and -5 collide resulting in 10. The 5 and 10 never collide.
+
+import java.util.*;
+
+class Solution {
+    public int[] asteroidCollision(int[] asteroids) {
+        Stack<Integer> st = new Stack<>();
+        
+        for (int num : asteroids) {
+            boolean destroyed = false;
+            
+            // Collision occurs only when we have positive asteroid on stack and current one is negative
+            while (!st.isEmpty() && num < 0 && st.peek() > 0) {
+                if (Math.abs(num) > st.peek()) {
+                    st.pop(); // Current asteroid destroys the top
+                    continue;
+                } else if (Math.abs(num) == st.peek()) {
+                    st.pop(); // Both asteroids destroy each other
+                }
+                destroyed = true; // Current asteroid is destroyed
+                break;
+            }
+            
+            // If the current asteroid is not destroyed, push it
+            if (!destroyed) {
+                st.push(num);
+            }
+        }
+        
+        // Convert stack to array
+        int[] ans = new int[st.size()];
+        for (int i = st.size() - 1; i >= 0; i--) {
+            ans[i] = st.pop();
+        }
+        return ans;
+    }
+}
+
