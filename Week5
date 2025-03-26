@@ -407,8 +407,11 @@ class Solution {
 Date: 26/03/2025
 
 LC 402. Remove K Digits
-LC 503. 
-LC 907.
+hwLC 503. 
+hwLC 907.// next smaller and prev smaller.
+hwLC 735// Astriod collision
+hwStock span problem
+
 
 Leetcode 402
 402. Remove K Digits
