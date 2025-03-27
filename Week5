@@ -234,6 +234,8 @@ Date: 25/03/2024
  //leetcode 2816
  //copy list with random pointer
  //add 1 to a linked list
+//stack
+
 
 //stack
 //Stack using Arraylist
@@ -580,7 +582,8 @@ class Solution {
 Date: 27/march/2025
 
 Leetcode 
-//739,735,540
+//739,735,540,32
+Queue
 
 
 739. Daily Temperatures
@@ -777,3 +780,7 @@ class Solution {
         return maxLen;
     }
 }
+
+/////Queue 
+
+
