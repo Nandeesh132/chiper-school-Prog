@@ -445,6 +445,7 @@ public class SLL{
         ll.addAtLast(5);
         ll.addAtLast(6);
         ll.addAtLast(7);
+        ll.addAtIndex(10,3);
 
         ll.printLinkedList();
         ll.deleteAtIndex(2);
