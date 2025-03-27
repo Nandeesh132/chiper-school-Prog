@@ -782,6 +782,8 @@ class Solution {
 }
 
 /////Queue 
+
+// Implementation of queue using Arraylist
 import java.util.*;
 class Main {
     static class Queue{
@@ -828,3 +830,50 @@ class Main {
     }
 }
 
+
+// implementation pf queue using Linkedlist
+import java.util.*;
+class Main {
+    static class Queue{
+        LinkedList<Integer> Qlist;
+        Queue(){
+            Qlist = new LinkedList<>();
+        }
+        void enqueue(int element){
+            Qlist.addFirst(element);
+        }
+        int peek(){
+            if(Qlist.isEmpty())return -1;
+            return Qlist.peekLast();
+            
+        }
+        int dequeue(){
+            if(Qlist.isEmpty()) return -1;
+            int ele =this.peek();
+            Qlist.removeLast();
+            return ele;
+        }
+        int getSize(){
+            if(Qlist.isEmpty())return 0;
+            return Qlist.size();
+        }
+        
+    }
+    public static void main(String[] args) {
+        Queue q = new Queue();
+        q.enqueue(10);
+        q.enqueue(120);
+        q.enqueue(103);
+        q.enqueue(105);
+        q.enqueue(109);
+        
+        System.out.println(q.peek());
+        System.out.println(q.dequeue());
+        System.out.println(q.dequeue());
+        System.out.println(q.dequeue());
+        System.out.println(q.dequeue());
+        System.out.println(q.dequeue());
+        System.out.println(q.getSize());
+        
+    }
+}
