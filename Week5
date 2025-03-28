@@ -884,7 +884,7 @@ class Main {
 
 Date : 28/march/2025(Friday)
 
-Leetcode 160,225,232
+Leetcode 160,225,232,115
 gfg: Add 1 to a Linked List Number
 
 160. Intersection of Two Linked Lists
@@ -1222,53 +1222,7 @@ Explanation: 4->5->6 represents 456 and when 1 is added it becomes 457.
 Input: LinkedList: 1->2->3
 Output: 124
 
-code: 1:-
-//{ Driver Code Starts
-import java.io.*;
-import java.util.*;
-
-class Node {
-    int data;
-    Node next;
-
-    Node(int x) {
-        data = x;
-        next = null;
-    }
-}
-
-class GfG {
-    public static void printList(Node node) {
-        while (node != null) {
-            System.out.print(node.data);
-            node = node.next;
-        }
-        System.out.println();
-    }
-
-    public static void main(String args[]) throws IOException {
-        BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
-        int t = Integer.parseInt(read.readLine());
-        while (t-- > 0) {
-            String str[] = read.readLine().trim().split(" ");
-            int n = str.length;
-            Node head = new Node(Integer.parseInt(str[0]));
-            Node tail = head;
-            for (int i = 1; i < n; i++) {
-                tail.next = new Node(Integer.parseInt(str[i]));
-                tail = tail.next;
-            }
-            Solution obj = new Solution();
-            head = obj.addOne(head);
-            printList(head);
-        
-System.out.println("~");
-}
-    }
-}
-// } Driver Code Ends
-
-
+code: 1:-  using Backward carry
 
 
 /*
@@ -1319,3 +1273,140 @@ class Solution {
         return head;
     }
 }
+
+
+code 2: using reverse
+
+class Solution {
+    
+    public Node addOne(Node head) {
+        head = reverse(head); // Reverse the linked list
+
+        Node temp = head;
+        int carry = 1; // Start with carry as 1 (since we are adding 1)
+
+        while (temp != null) {
+            int sum = temp.data + carry;
+            temp.data = sum % 10;
+            carry = sum / 10;
+
+            if (temp.next == null && carry > 0) {
+                temp.next = new Node(carry);
+                carry = 0;
+            }
+
+            temp = temp.next;
+        }
+
+        head = reverse(head); // Reverse back to original order
+        return head;
+    }
+
+    // Function to reverse the linked list
+    private Node reverse(Node head) {
+        Node prev = null;
+        Node curr = head;
+        while (curr != null) {
+            Node nextNode = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = nextNode;
+        }
+        return prev;
+    }
+}
+
+
+
+
+
+155. Min Stack
+Solved
+Medium
+Topics
+Companies
+Hint
+Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
+
+Implement the MinStack class:
+
+MinStack() initializes the stack object.
+void push(int val) pushes the element val onto the stack.
+void pop() removes the element on the top of the stack.
+int top() gets the top element of the stack.
+int getMin() retrieves the minimum element in the stack.
+You must implement a solution with O(1) time complexity for each function.
+
+ 
+
+Example 1:
+
+Input
+["MinStack","push","push","push","getMin","pop","top","getMin"]
+[[],[-2],[0],[-3],[],[],[],[]]
+
+Output
+[null,null,null,null,-3,null,0,-2]
+
+Explanation
+MinStack minStack = new MinStack();
+minStack.push(-2);
+minStack.push(0);
+minStack.push(-3);
+minStack.getMin(); // return -3
+minStack.pop();
+minStack.top();    // return 0
+minStack.getMin(); // return -2
+
+
+code 1: using Stack pair
+and other ways are there like using arraylist pair and using two stacks
+
+class MinStack {
+    class Pair{
+        int val;
+        int min;
+        Pair(int v, int m){
+            this.val =v;
+            this.min = m;
+        }
+
+    }
+    Stack <Pair> s; 
+    //in pair 
+    //first val= value
+    //secound value = min
+    public MinStack() {
+        s = new Stack<>();
+    }
+    
+    public void push(int val) {
+        if(s.isEmpty()){
+            s.push(new Pair(val,val));
+        }else{
+            Pair p =new Pair(val,Math.min(s.peek().min,val));
+            s.push(p);
+        }
+    }
+    
+    public void pop() {
+        s.pop();
+    }
+    
+    public int top() {
+        return s.peek().val;
+    }
+    
+    public int getMin() {
+        return s.peek().min;
+    }
+}
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * MinStack obj = new MinStack();
+ * obj.push(val);
+ * obj.pop();
+ * int param_3 = obj.top();
+ * int param_4 = obj.getMin();
+ */
