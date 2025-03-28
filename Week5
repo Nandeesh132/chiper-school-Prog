@@ -884,7 +884,7 @@ class Main {
 
 Date : 28/march/2025(Friday)
 
-Leetcode 160,225,232,115
+Leetcode 160,225,232,115,85
 gfg: Add 1 to a Linked List Number
 
 160. Intersection of Two Linked Lists
@@ -1410,3 +1410,5 @@ class MinStack {
  * int param_3 = obj.top();
  * int param_4 = obj.getMin();
  */
+
+LeetCode 85 pending
