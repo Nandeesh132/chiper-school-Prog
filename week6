@@ -22,3 +22,55 @@ class Solution {
     }   
 
 }
+
+//////////////////////////////////////////////////////////////////////////////
+Date: 2/04/2025
+
+
+
+code 2: // we directly asking what is height and are you balanced at a time
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {// we directly asking what is height and are you balanced at a time
+
+    public class Pair {
+        int height;
+        boolean balanced;
+        
+        Pair(int height, boolean balanced) {
+            this.height = height;
+            this.balanced = balanced;
+        }
+    }
+    
+    public Pair helper(TreeNode root) {
+        if (root == null) {
+            return new Pair(0, true);
+        }
+        
+        Pair left = helper(root.left);
+        Pair right = helper(root.right);
+        
+        boolean isBalanced = left.balanced && right.balanced && Math.abs(left.height - right.height) <= 1;
+        int height = Math.max(left.height, right.height) + 1;
+        
+        return new Pair(height, isBalanced);
+    }
+    
+    public boolean isBalanced(TreeNode root) {
+        return helper(root).balanced;
+    }
+}
