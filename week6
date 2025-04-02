@@ -1,0 +1,24 @@
+Date: 1/04/2025 (Tuesday)
+
+
+trees Basics
+leet code 
+
+
+
+code 2:
+class Solution {
+    List<Integer> result = new ArrayList<>();
+
+    public void helper(TreeNode root){
+        if(root == null) return;
+        helper(root.left);
+        result.add(root.val);
+        helper(root.right);
+    }
+    public List<Integer> inorderTraversal(TreeNode root) {
+        helper(root);
+        return result;
+    }   
+
+}
