@@ -44,6 +44,27 @@ Example 1:
 Input: root = [3,9,20,null,null,15,7]
 Output: true
 
+code1: 
+class Solution {
+    public int hight(TreeNode root){
+        if(root == null)return 0;
+        int c1 = hight(root.left);
+        int c2 = hight(root.right);
+        return Math.max(c1,c2)+1;
+    }
+    public boolean isBalanced(TreeNode root) {
+        if(root==null){
+            return true;
+        }
+        int lh = hight(root.left);
+        int rh = hight(root.right);
+
+        if(Math.abs(lh-rh) <=1 && isBalanced(root.left) && isBalanced(root.right) ){
+            return true;
+        }
+        return false;
+    }
+}
 
 code 2: // we directly asking what is height and are you balanced at a time
 /**
