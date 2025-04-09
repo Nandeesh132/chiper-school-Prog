@@ -10,5 +10,38 @@ Date: 9/04/2025
 
 Dfs,bfs code in gfg
 
+
+
+
+BFS Code:-
+import java.util.*;
+
+class Solution {
+    // Function to return a list containing the BFS traversal of the graph.
+    public ArrayList<Integer> bfs(ArrayList<ArrayList<Integer>> adj) {
+        HashSet<Integer> visited = new HashSet<>();
+        Queue<Integer> queue = new LinkedList<>();
+        ArrayList<Integer> result = new ArrayList<>();
+
+        queue.add(0); // Start BFS from node 0
+        visited.add(0);
+
+        while (!queue.isEmpty()) {
+            int node = queue.poll();
+            result.add(node);
+
+            for (int neighbor : adj.get(node)) {
+                if (!visited.contains(neighbor)) {
+                    queue.add(neighbor);
+                    visited.add(neighbor);
+                }
+            }
+        }
+
+        return result;
+    }
+}
+
+
 Detect cycle in an undirected graph
 
