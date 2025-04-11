@@ -45,13 +45,14 @@ class Solution {
 
 Detect cycle in an undirected graph
 https://www.geeksforgeeks.org/detect-cycle-undirected-graph/
+/////////////////////////////////////////////////////////////////////////////////////
 
 Date: 10/04/2025
 
 Priority queue, detect undirected graph is cyclic or not,detect directed graph is cyclic or not.
 
 problems of priority queue and kbit is set or not
-
+///////////////////////////////////////////////////////////////////////////////////////
 Date: 11/04/2025
 
 Leetcode 23 using priority queue
@@ -100,6 +101,54 @@ class Solution {
         }
         tail.next = null;
         return head.next;
+
+    }
+}
+
+code:2
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public class Pair implements Comparable<Pair>{
+        ListNode head;
+
+        Pair(ListNode head){
+            this.head = head;
+        }
+        @Override
+        public int compareTo(Pair p){
+            return this.head.val - p.head.val;
+        }
+    }
+    public ListNode mergeKLists(ListNode[] lists) {
+        if(lists.length == 0) return null;
+        PriorityQueue<Pair> pq = new PriorityQueue<>();
+
+        for(int i = 0;i<lists.length;i++){
+            ListNode head = lists[i];
+            if(head!=null) pq.add(new Pair(head));
+        }
+
+        ListNode head = new ListNode(0);
+        ListNode tail = head;
+        while(pq.size()!=0){
+            ListNode temp = pq.remove().head;
+            if(temp.next!=null) pq.add(new Pair(temp.next));
+            tail.next = temp;
+            tail = tail.next;
+        }
+        tail.next = null;
+        return head.next;
+        
 
     }
 }
