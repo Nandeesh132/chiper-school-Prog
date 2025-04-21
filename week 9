@@ -2,8 +2,31 @@ Date:- 21/04/2025
 
 Dynamic programming questions
 pending DP question Lis,Lps,Lcs,Lps, wild card matching, ldp matrix, min path sum ,min fall sum,
+Lc-70 climbing stairs
 
 Lc403 frog jump, Lc 120 Triangle
+Lc -64 Minimum Path Sum, Lc-931 Mini Falling Path Sum
 frog jump gfg
 
 
+
+
+
+Lc-70 climbing stairs
+code:
+class Solution {
+    public int helper(int n,int[] memo){
+        if(n==1) return 1;
+        if(n==2) return 2;
+        if(memo[n]!=-1) return memo[n];
+        memo[n] = helper(n-1,memo)+helper(n-2,memo);
+        return memo[n];
+    }
+    public int climbStairs(int n) {
+        int[] memo = new int[n+1];
+        for(int i =0;i<=n;i++){
+            memo[i] = -1;
+        }
+        return helper(n,memo);
+    }
+}
